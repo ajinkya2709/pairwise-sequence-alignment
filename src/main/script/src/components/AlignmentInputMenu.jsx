@@ -68,14 +68,20 @@ class AlignmentInputMenu extends Component {
               className="Text-input"
               type="text"
               onChange={event =>
-                this.setState({ matchScore: event.target.value })
+                this.setState({ gapPenalty: event.target.value })
               }
             />
           </div>
           <div>Div for Affine Gap Penalty</div>
         </div>
         <div>
-          <button className="Submit-button" type="button">
+          <button
+            className="Submit-button"
+            type="button"
+            onClick={() => {
+              this.props.onSubmit(this.state);
+            }}
+          >
             Compute Alignment
           </button>
         </div>

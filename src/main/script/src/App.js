@@ -4,6 +4,24 @@ import "./App.css";
 import AlignmentInputMenu from "./components/AlignmentInputMenu";
 
 class App extends Component {
+  computeAlignment(data) {
+    console.log("Serialized JSON Data", JSON.stringify(data));
+    fetch("/global", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify(data)
+    })
+      .then(response => {
+        return response.json();
+      })
+      .then(json => {
+        console.log("json", json);
+      });
+  }
+
   render() {
     return (
       <div className="App">
@@ -12,7 +30,7 @@ class App extends Component {
           <h1 className="App-title">Pairwise Sequence Alignment</h1>
         </header>
         <div>
-          <AlignmentInputMenu />
+          <AlignmentInputMenu onSubmit={this.computeAlignment.bind(this)} />
         </div>
       </div>
     );
