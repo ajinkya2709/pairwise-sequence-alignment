@@ -40,7 +40,7 @@
 .Alignment-input-options,
 .Alignment-score-options,
 .Alignment-penalty-options {
-  width: 33%;
+  width: 33.33%;
   float: left;
   border: 2px solid white;
   height: 200px;
@@ -63,7 +63,8 @@
 }
 
 .Text-input {
-  margin: 25px 0px 5px 0px;
+  margin: 25px 5px 5px 0px;
+  width: 100px;
 }
 
 .Alignment-file-input {
@@ -72,11 +73,35 @@
 }
 
 .Alignment-simple-score-input-div {
-  width: 60%;
+  width: 50%;
   float: left;
 }
 
 .Submit-button {
+  margin-top: 10px;
   font-size: 20px;
   cursor: pointer;
+}
+
+.Score-matrix-div {
+  margin-top: 45px;
+  padding-left: 15px;
+}
+
+.Left-table,
+.Right-table {
+  float: left;
+}
+
+table,
+th,
+td {
+  border: 1px solid black;
+}
+
+.Cell {
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  padding-top: 15px;
 }

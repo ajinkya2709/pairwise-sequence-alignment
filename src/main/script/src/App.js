@@ -2,10 +2,24 @@ import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import AlignmentInputMenu from "./components/AlignmentInputMenu";
+import ScoreMatrix from "./components/ScoreMatrix";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      sequence1: [],
+      sequence2: [],
+      scoreMatrix: []
+    };
+  }
+
   computeAlignment(data) {
-    console.log("Serialized JSON Data", JSON.stringify(data));
+    // State change is asynchronous
+    this.setState({
+      sequence1: data.input1.split(""),
+      sequence2: data.input2.split("")
+    });
     fetch("/global", {
       method: "POST",
       headers: {
@@ -19,6 +33,7 @@ class App extends Component {
       })
       .then(json => {
         console.log("json", json);
+        this.setState({ scoreMatrix: json.scoreMatrix });
       });
   }
 
@@ -31,6 +46,13 @@ class App extends Component {
         </header>
         <div>
           <AlignmentInputMenu onSubmit={this.computeAlignment.bind(this)} />
+        </div>
+        <div>
+          <ScoreMatrix
+            matrix={this.state.scoreMatrix}
+            sequence1={this.state.sequence1}
+            sequence2={this.state.sequence2}
+          />
         </div>
       </div>
     );
