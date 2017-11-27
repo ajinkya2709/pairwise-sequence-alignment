@@ -84,4 +84,12 @@ public class RequestData {
 		this.gapExtendPenalty = gapExtendPenalty;
 	}
 
+	@Override
+	public String toString() {
+		return "{input1 : " + this.input1 + ", input2 : " + this.input2 + ", Use Blosum Matrix Flag : "
+				+ this.useBlosumMatrix + ", Match Score : " + this.matchScore + ", Mismatch Score : "
+				+ this.mismatchScore + ", Gap Penalty : " + this.gapPenalty + ", Use Affine Gap Penalty Flag : "
+				+ this.useAffineGapPenalty + "}";
+	}
+
 }
