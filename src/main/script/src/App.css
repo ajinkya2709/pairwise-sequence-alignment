@@ -23,6 +23,59 @@
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.Alignment-input-menu {
+  background-color: #a9a9a9;
+  height: 200px;
+  width: 100%;
+}
+
+.Alignment-input-options,
+.Alignment-score-options,
+.Alignment-penalty-options {
+  width: 33%;
+  float: left;
+  border: 2px solid white;
+  height: 200px;
+  padding: 5px 0px 5px 0px;
+}
+
+.Option-header {
+  width: 100%;
+  text-align: center;
+  height: 10%;
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.Alignment-sequence-input-div,
+.Alignment-constant-penalty-input-div {
+  float: left;
+  width: 50%;
+}
+
+.Text-input {
+  margin: 25px 0px 5px 0px;
+}
+
+.Alignment-file-input {
+  width: 50%;
+  float: right;
+}
+
+.Alignment-simple-score-input-div {
+  width: 60%;
+  float: left;
+}
+
+.Submit-button {
+  font-size: 20px;
 }
