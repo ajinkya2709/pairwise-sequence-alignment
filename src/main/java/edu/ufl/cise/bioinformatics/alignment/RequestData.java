@@ -4,13 +4,13 @@ public class RequestData {
 
 	private String input1;
 	private String input2;
-	private int matchScore;
-	private int mismatchScore;
-	private int gapPenalty;
+	private String matchScore;
+	private String mismatchScore;
+	private String gapPenalty;
 	private Boolean useBlosumMatrix;
 	private Boolean useAffineGapPenalty;
-	private int gapStartPenalty;
-	private int gapExtendPenalty;
+	private String gapStartPenalty;
+	private String gapExtendPenalty;
 
 	public String getInput1() {
 		return input1;
@@ -28,27 +28,27 @@ public class RequestData {
 		this.input2 = input2;
 	}
 
-	public int getMatchScore() {
+	public String getMatchScore() {
 		return matchScore;
 	}
 
-	public void setMatchScore(int matchScore) {
+	public void setMatchScore(String matchScore) {
 		this.matchScore = matchScore;
 	}
 
-	public int getMismatchScore() {
+	public String getMismatchScore() {
 		return mismatchScore;
 	}
 
-	public void setMismatchScore(int mismatchScore) {
+	public void setMismatchScore(String mismatchScore) {
 		this.mismatchScore = mismatchScore;
 	}
 
-	public int getGapPenalty() {
+	public String getGapPenalty() {
 		return gapPenalty;
 	}
 
-	public void setGapPenalty(int gapPenalty) {
+	public void setGapPenalty(String gapPenalty) {
 		this.gapPenalty = gapPenalty;
 	}
 
@@ -68,19 +68,19 @@ public class RequestData {
 		this.useAffineGapPenalty = useAffineGapPenalty;
 	}
 
-	public int getGapStartPenalty() {
+	public String getGapStartPenalty() {
 		return gapStartPenalty;
 	}
 
-	public void setGapStartPenalty(int gapStartPenalty) {
+	public void setGapStartPenalty(String gapStartPenalty) {
 		this.gapStartPenalty = gapStartPenalty;
 	}
 
-	public int getGapExtendPenalty() {
+	public String getGapExtendPenalty() {
 		return gapExtendPenalty;
 	}
 
-	public void setGapExtendPenalty(int gapExtendPenalty) {
+	public void setGapExtendPenalty(String gapExtendPenalty) {
 		this.gapExtendPenalty = gapExtendPenalty;
 	}
 

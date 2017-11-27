@@ -24,9 +24,10 @@ public class GlobalAlignmentController {
 		if (requestData.getUseBlosumMatrix()) {
 			scoringScheme = new BlosumMatrixScoringScheme();
 		} else {
-			scoringScheme = new SimpleScoringScheme(requestData.getMatchScore(), requestData.getMismatchScore());
+			scoringScheme = new SimpleScoringScheme(Integer.parseInt(requestData.getMatchScore()),
+					Integer.parseInt(requestData.getMismatchScore()));
 		}
 		return globalAlignmentService.computeGlobalAlignment(requestData.getInput1(), requestData.getInput2(),
-				scoringScheme, requestData.getGapPenalty());
+				scoringScheme, Integer.parseInt(requestData.getGapPenalty()));
 	}
 }
