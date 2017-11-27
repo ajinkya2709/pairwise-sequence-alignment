@@ -5,7 +5,7 @@ public class AlignmentResult {
 	private char[] sequence1, sequence2;
 	private int score;
 	private int start1, start2;
-	private int[][] scoreMatrix;
+	private MatrixCell[][] scoreMatrix;
 
 	public char[] getSequence1() {
 		return sequence1;
@@ -47,11 +47,11 @@ public class AlignmentResult {
 		this.start2 = start2;
 	}
 
-	public int[][] getScoreMatrix() {
+	public MatrixCell[][] getScoreMatrix() {
 		return scoreMatrix;
 	}
 
-	public void setScoreMatrix(int[][] scoreMatrix) {
+	public void setScoreMatrix(MatrixCell[][] scoreMatrix) {
 		this.scoreMatrix = scoreMatrix;
 	}
 
