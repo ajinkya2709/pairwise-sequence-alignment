@@ -12,6 +12,16 @@ class MatrixCell extends Component {
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    let bgcolor = "#FFF";
+    if (nextProps.highlight) {
+      bgcolor = "#ADFF2F";
+    }
+    this.setState({
+      backgroundColor: bgcolor
+    });
+  }
+
   render() {
     return (
       <div className="Cell" style={this.state}>
