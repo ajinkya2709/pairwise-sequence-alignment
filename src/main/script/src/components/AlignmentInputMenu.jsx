@@ -12,7 +12,8 @@ class AlignmentInputMenu extends Component {
       useBlosumMatrix: false,
       useAffineGapPenalty: false,
       gapStartPenalty: 0,
-      gapExtendPenalty: 0
+      gapExtendPenalty: 0,
+      alignmentType: "global"
     };
   }
 
@@ -75,6 +76,16 @@ class AlignmentInputMenu extends Component {
           <div>Div for Affine Gap Penalty</div>
         </div>
         <div>
+          <select
+            className="Alignment-type-dropdown"
+            defaultValue={this.state.alignmentType}
+            onChange={event =>
+              this.setState({ alignmentType: event.target.value })
+            }
+          >
+            <option value="global">Global Alignment</option>
+            <option value="local">Local Alignment</option>
+          </select>
           <button
             className="Submit-button"
             type="button"

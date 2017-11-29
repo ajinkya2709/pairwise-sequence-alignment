@@ -81,10 +81,12 @@
   margin-top: 10px;
   font-size: 20px;
   cursor: pointer;
+  background-color: #337dff;
+  color: #fff;
 }
 
 .Score-matrix-div {
-  margin-top: 45px;
+  margin-top: 55px;
   padding-left: 15px;
 }
 
@@ -104,4 +106,9 @@ td {
   height: 50px;
   text-align: center;
   padding-top: 15px;
+}
+
+.Alignment-type-dropdown {
+  font-size: 20px;
+  margin: 0px 40px 0px 10px;
 }
