@@ -20,7 +20,7 @@ class App extends Component {
       sequence1: data.input1.split(""),
       sequence2: data.input2.split("")
     });
-    fetch("/global", {
+    fetch("/" + data.alignmentType, {
       method: "POST",
       headers: {
         "Content-type": "application/json",
