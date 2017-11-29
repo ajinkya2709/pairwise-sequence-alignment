@@ -1,5 +1,7 @@
 package edu.ufl.cise.bioinformatics.alignment;
 
+import java.util.Arrays;
+
 public class AlignmentResult {
 
 	private char[] sequence1, sequence2;
@@ -55,4 +57,11 @@ public class AlignmentResult {
 		this.scoreMatrix = scoreMatrix;
 	}
 
+	@Override
+	public String toString() {
+		return "AlignmentResult [sequence1=" + Arrays.toString(sequence1) + ", sequence2=" + Arrays.toString(sequence2)
+				+ ", score=" + score + ", start1=" + start1 + ", start2=" + start2 + ", scoreMatrix="
+				+ Arrays.toString(scoreMatrix) + "]";
+	}
+	
 }
