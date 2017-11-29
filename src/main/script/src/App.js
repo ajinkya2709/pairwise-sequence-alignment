@@ -29,11 +29,17 @@ class App extends Component {
       body: JSON.stringify(data)
     })
       .then(response => {
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
         return response.json();
       })
       .then(json => {
         console.log("json", json);
         this.setState({ scoreMatrix: json.scoreMatrix });
+      })
+      .catch(function(error) {
+        console.log(error);
       });
   }
 
