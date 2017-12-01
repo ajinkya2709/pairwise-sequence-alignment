@@ -8,6 +8,11 @@ public class AlignmentResult {
 	private int score;
 	private int start1, start2;
 	private MatrixCell[][] scoreMatrix;
+	// For Affine Gap Model
+	private boolean affineModelUsed;
+	private MatrixCell[][] scoreMatrixM;
+	private MatrixCell[][] scoreMatrixX;
+	private MatrixCell[][] scoreMatrixY;
 
 	public char[] getSequence1() {
 		return sequence1;
@@ -57,11 +62,43 @@ public class AlignmentResult {
 		this.scoreMatrix = scoreMatrix;
 	}
 
+	public boolean isAffineModelUsed() {
+		return affineModelUsed;
+	}
+
+	public void setAffineModelUsed(boolean affineModelUsed) {
+		this.affineModelUsed = affineModelUsed;
+	}
+
+	public MatrixCell[][] getScoreMatrixM() {
+		return scoreMatrixM;
+	}
+
+	public void setScoreMatrixM(MatrixCell[][] scoreMatrixM) {
+		this.scoreMatrixM = scoreMatrixM;
+	}
+
+	public MatrixCell[][] getScoreMatrixX() {
+		return scoreMatrixX;
+	}
+
+	public void setScoreMatrixX(MatrixCell[][] scoreMatrixX) {
+		this.scoreMatrixX = scoreMatrixX;
+	}
+
+	public MatrixCell[][] getScoreMatrixY() {
+		return scoreMatrixY;
+	}
+
+	public void setScoreMatrixY(MatrixCell[][] scoreMatrixY) {
+		this.scoreMatrixY = scoreMatrixY;
+	}
+
 	@Override
 	public String toString() {
 		return "AlignmentResult [sequence1=" + Arrays.toString(sequence1) + ", sequence2=" + Arrays.toString(sequence2)
 				+ ", score=" + score + ", start1=" + start1 + ", start2=" + start2 + ", scoreMatrix="
 				+ Arrays.toString(scoreMatrix) + "]";
 	}
-	
+
 }

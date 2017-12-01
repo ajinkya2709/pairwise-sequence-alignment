@@ -1,11 +1,18 @@
 package edu.ufl.cise.bioinformatics.alignment;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class MatrixCell {
 	int value;
 	Boolean shouldHighlight;
+	MatrixCell[][] prev;
 
 	public MatrixCell() {
 		super();
+	}
+
+	public MatrixCell(int value) {
+		this(value, false);
 	}
 
 	public MatrixCell(int value, Boolean shouldHighlight) {
@@ -28,6 +35,15 @@ public class MatrixCell {
 
 	public void setShouldHighlight(Boolean shouldHighlight) {
 		this.shouldHighlight = shouldHighlight;
+	}
+
+	@JsonIgnore
+	public MatrixCell[][] getPrev() {
+		return prev;
+	}
+
+	public void setPrev(MatrixCell[][] prev) {
+		this.prev = prev;
 	}
 
 }

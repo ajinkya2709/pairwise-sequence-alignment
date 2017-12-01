@@ -27,7 +27,17 @@ public class GlobalAlignmentController {
 			scoringScheme = new SimpleScoringScheme(Integer.parseInt(requestData.getMatchScore()),
 					Integer.parseInt(requestData.getMismatchScore()));
 		}
-		return globalAlignmentService.computeGlobalAlignment(requestData.getInput1(), requestData.getInput2(),
-				scoringScheme, Integer.parseInt(requestData.getGapPenalty()));
+		AlignmentResult result = null;
+		if (requestData.getUseAffineGapPenalty()) {
+			result = globalAlignmentService.computeGlobalAlignmentWithAffineGap(requestData.getInput1(),
+					requestData.getInput2(), scoringScheme, Integer.parseInt(requestData.getGapStartPenalty()),
+					Integer.parseInt(requestData.getGapExtendPenalty()), -100);
+
+		} else {
+			result = globalAlignmentService.computeGlobalAlignment(requestData.getInput1(), requestData.getInput2(),
+					scoringScheme, Integer.parseInt(requestData.getGapPenalty()));
+		}
+		return result;
 	}
+
 }
