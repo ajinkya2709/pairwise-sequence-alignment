@@ -3,6 +3,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import AlignmentInputMenu from "./components/AlignmentInputMenu";
 import ScoreMatrix from "./components/ScoreMatrix";
+import AffineGapScoreMatrices from "./components/AffineGapScoreMatrices";
 
 class App extends Component {
   constructor(props) {
@@ -10,7 +11,10 @@ class App extends Component {
     this.state = {
       sequence1: [],
       sequence2: [],
-      scoreMatrix: []
+      scoreMatrix: [],
+      scoreMatrixM: [],
+      scoreMatrixX: [],
+      scoreMatrixY: []
     };
   }
 
@@ -36,7 +40,21 @@ class App extends Component {
       })
       .then(json => {
         console.log("json", json);
-        this.setState({ scoreMatrix: json.scoreMatrix });
+        if (!json.affineModelUsed) {
+          this.setState({
+            scoreMatrix: json.scoreMatrix,
+            scoreMatrixM: [],
+            scoreMatrixX: [],
+            scoreMatrixY: []
+          });
+        } else {
+          this.setState({
+            scoreMatrixM: json.scoreMatrixM,
+            scoreMatrixX: json.scoreMatrixX,
+            scoreMatrixY: json.scoreMatrixY,
+            scoreMatrix: []
+          });
+        }
       })
       .catch(function(error) {
         console.log(error);
@@ -56,6 +74,13 @@ class App extends Component {
         <div>
           <ScoreMatrix
             matrix={this.state.scoreMatrix}
+            sequence1={this.state.sequence1}
+            sequence2={this.state.sequence2}
+          />
+          <AffineGapScoreMatrices
+            matrixM={this.state.scoreMatrixM}
+            matrixX={this.state.scoreMatrixX}
+            matrixY={this.state.scoreMatrixY}
             sequence1={this.state.sequence1}
             sequence2={this.state.sequence2}
           />

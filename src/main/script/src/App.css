@@ -59,7 +59,7 @@
 .Alignment-sequence-input-div,
 .Alignment-constant-penalty-input-div {
   float: left;
-  width: 50%;
+  width: 100%;
 }
 
 .Text-input {
@@ -68,13 +68,17 @@
 }
 
 .Alignment-file-input {
-  width: 50%;
+  width: 100%;
   float: right;
 }
 
 .Alignment-simple-score-input-div {
-  width: 50%;
+  width: 100%;
   float: left;
+}
+
+.Alignment-blosum-div {
+  padding-top: 30px;
 }
 
 .Submit-button {
@@ -110,5 +114,18 @@ td {
 
 .Alignment-type-dropdown {
   font-size: 20px;
+  font-weight: normal;
   margin: 0px 40px 0px 10px;
+}
+
+.File-input {
+  margin: 25px 5px 5px 10px;
+  width: 200px;
+}
+
+.Affine-gap-score-matrices-div,
+.Score-matrixM-div,
+.Score-matrixX-div,
+.Score-matrixY-div {
+  float: left;
 }
