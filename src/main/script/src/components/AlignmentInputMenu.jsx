@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Collapse } from "react-bootstrap";
 
 class AlignmentInputMenu extends Component {
   constructor(props) {
@@ -9,11 +10,19 @@ class AlignmentInputMenu extends Component {
       matchScore: 0,
       mismatchScore: 0,
       gapPenalty: 0,
-      useBlosumMatrix: false,
-      useAffineGapPenalty: false,
       gapStartPenalty: 0,
       gapExtendPenalty: 0,
-      alignmentType: "global"
+      alignmentType: "global",
+      // Control Input Section
+      // This boolean should control the request url specific to files
+      useFileInput: false,
+      inputType: "text",
+      // Control the Scoring Section
+      useBlosumMatrix: false,
+      scoringType: "simple",
+      // Control the Gap Penalty Section
+      useAffineGapPenalty: false,
+      penaltyType: "simple"
     };
   }
 
@@ -21,59 +30,163 @@ class AlignmentInputMenu extends Component {
     return (
       <div className="Alignment-input-menu">
         <div className="Alignment-input-options">
-          <div className="Option-header">Input Options</div>
-          <div className="Alignment-sequence-input-div">
-            Sequence 1 :{" "}
-            <input
-              className="Text-input"
-              type="text"
-              onChange={event => this.setState({ input1: event.target.value })}
-            />
-            Sequence 2 :{" "}
-            <input
-              className="Text-input"
-              type="text"
-              onChange={event => this.setState({ input2: event.target.value })}
-            />
+          <div className="Option-header">
+            Input Options{" "}
+            <select
+              // change class name if needed
+              className="Alignment-type-dropdown"
+              onChange={event => {
+                if (event.target.value === "text") {
+                  this.setState({ useFileInput: false, inputType: "text" });
+                } else {
+                  this.setState({ useFileInput: true, inputType: "file" });
+                }
+              }}
+            >
+              <option value="text">Text Input</option>
+              <option value="file">File Input</option>
+            </select>
           </div>
-          <div className="Alignment-file-input">Div for File Input</div>
+          <Collapse in={!this.state.useFileInput}>
+            <div className="Alignment-sequence-input-div">
+              Sequence 1 :{" "}
+              <input
+                className="Text-input"
+                type="text"
+                onChange={event =>
+                  this.setState({ input1: event.target.value })
+                }
+              />
+              Sequence 2 :{" "}
+              <input
+                className="Text-input"
+                type="text"
+                onChange={event =>
+                  this.setState({ input2: event.target.value })
+                }
+              />
+            </div>
+          </Collapse>
+          <Collapse in={this.state.useFileInput}>
+            <div className="Alignment-file-input">
+              <form encType="multipart/form-data" action="">
+                <input
+                  className="File-input"
+                  type="file"
+                  name="fileName"
+                  defaultValue="fileName"
+                />
+              </form>
+            </div>
+          </Collapse>
         </div>
         <div className="Alignment-score-options">
-          <div className="Option-header">Score Options</div>
-          <div className="Alignment-simple-score-input-div">
-            Match Score :{" "}
-            <input
-              className="Text-input"
-              type="text"
-              onChange={event =>
-                this.setState({ matchScore: event.target.value })
-              }
-            />
-            Mismatch Score :{" "}
-            <input
-              className="Text-input"
-              type="text"
-              onChange={event =>
-                this.setState({ mismatchScore: event.target.value })
-              }
-            />
+          <div className="Option-header">
+            Score Options{" "}
+            <select
+              // change class name if needed
+              className="Alignment-type-dropdown"
+              onChange={event => {
+                if (event.target.value === "simple") {
+                  this.setState({
+                    useBlosumMatrix: false,
+                    scoringType: "simple"
+                  });
+                } else {
+                  this.setState({
+                    useBlosumMatrix: true,
+                    scoringType: "blosum"
+                  });
+                }
+              }}
+            >
+              <option value="simple">Text Input</option>
+              <option value="blosum">Blosum 62</option>
+            </select>
           </div>
-          <div>Div for selecting Blosum Scoring</div>
+          <Collapse in={!this.state.useBlosumMatrix}>
+            <div className="Alignment-simple-score-input-div">
+              Match Score :{" "}
+              <input
+                className="Text-input"
+                type="text"
+                onChange={event =>
+                  this.setState({ matchScore: event.target.value })
+                }
+              />
+              Mismatch Score :{" "}
+              <input
+                className="Text-input"
+                type="text"
+                onChange={event =>
+                  this.setState({ mismatchScore: event.target.value })
+                }
+              />
+            </div>
+          </Collapse>
+          <Collapse in={this.state.useBlosumMatrix}>
+            <div className="Alignment-blosum-div">
+              <input type="checkbox" disabled checked /> Use Blosum 62 Matrix
+            </div>
+          </Collapse>
         </div>
         <div className="Alignment-penalty-options">
           {" "}
-          <div className="Option-header">Penalty Options</div>
-          <div className="Alignment-constant-penalty-input-div">
-            Gap Penalty :{" "}
-            <input
-              className="Text-input"
-              type="text"
-              onChange={event =>
-                this.setState({ gapPenalty: event.target.value })
-              }
-            />
+          <div className="Option-header">
+            Penalty Options{" "}
+            <select
+              // change class name if needed
+              className="Alignment-type-dropdown"
+              onChange={event => {
+                if (event.target.value === "simple") {
+                  this.setState({
+                    useAffineGapPenalty: false,
+                    penaltyType: "simple"
+                  });
+                } else {
+                  this.setState({
+                    useAffineGapPenalty: true,
+                    penaltyType: "affine"
+                  });
+                }
+              }}
+            >
+              <option value="simple">Constant Gap Penalty</option>
+              <option value="affine">Affine Gap Model</option>
+            </select>
           </div>
-          <div>Div for Affine Gap Penalty</div>
+          <Collapse in={!this.state.useAffineGapPenalty}>
+            <div className="Alignment-constant-penalty-input-div">
+              Gap Penalty :{" "}
+              <input
+                className="Text-input"
+                type="text"
+                onChange={event =>
+                  this.setState({ gapPenalty: event.target.value })
+                }
+              />
+            </div>
+          </Collapse>
+          <Collapse in={this.state.useAffineGapPenalty}>
+            <div>
+              Gap Start Penalty :{" "}
+              <input
+                className="Text-input"
+                type="text"
+                onChange={event =>
+                  this.setState({ gapStartPenalty: event.target.value })
+                }
+              />
+              Gap Extend Penalty :{" "}
+              <input
+                className="Text-input"
+                type="text"
+                onChange={event =>
+                  this.setState({ gapExtendPenalty: event.target.value })
+                }
+              />
+            </div>
+          </Collapse>
         </div>
         <div>
           <select
