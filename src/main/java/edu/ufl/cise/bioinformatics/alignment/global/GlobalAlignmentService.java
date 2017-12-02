@@ -102,9 +102,13 @@ public class GlobalAlignmentService {
 		MatrixCell[][] X = new MatrixCell[A.length + 1][B.length + 1];
 		MatrixCell[][] Y = new MatrixCell[A.length + 1][B.length + 1];
 
-		for (int j = 0; j < B.length + 1; j++) {
+		M[0][0] = new MatrixCell(negInfinity);
+		X[0][0] = new MatrixCell(negInfinity);
+		Y[0][0] = new MatrixCell(negInfinity);
+		for (int j = 1; j < B.length + 1; j++) {
 			M[0][j] = new MatrixCell(negInfinity);
 			X[0][j] = new MatrixCell(gapStartPenalty + (j * gapExtendPenalty));
+			X[0][j].setPrev(X);
 			Y[0][j] = new MatrixCell(negInfinity);
 		}
 
@@ -112,6 +116,7 @@ public class GlobalAlignmentService {
 			M[i][0] = new MatrixCell(negInfinity);
 			X[i][0] = new MatrixCell(negInfinity);
 			Y[i][0] = new MatrixCell(gapStartPenalty + (i * gapExtendPenalty));
+			Y[i][0].setPrev(Y);
 		}
 
 		int a = 0, b = 0, c = 0;
@@ -184,6 +189,7 @@ public class GlobalAlignmentService {
 		}
 
 		while (s1 > 0 || s2 > 0) {
+			pointer[s1][s2].setShouldHighlight(true);
 			if (pointer == M) {
 				pointer = M[s1][s2].getPrev();
 				sb1.insert(0, A[s1 - 1]);
