@@ -27,7 +27,18 @@ public class LocalAlignmentController {
 			scoringScheme = new SimpleScoringScheme(Integer.parseInt(requestData.getMatchScore()),
 					Integer.parseInt(requestData.getMismatchScore()));
 		}
-		return localAlignmentService.computeLocalAlignment(requestData.getInput1(), requestData.getInput2(),
-				scoringScheme, Integer.parseInt(requestData.getGapPenalty()));
+
+		AlignmentResult result = null;
+		if (requestData.getUseAffineGapPenalty()) {
+			result = localAlignmentService.computeLocalAlignmentWithAffineGap(requestData.getInput1(),
+					requestData.getInput2(), scoringScheme, Integer.parseInt(requestData.getGapStartPenalty()),
+					Integer.parseInt(requestData.getGapExtendPenalty()), -100);
+
+		} else {
+			result = localAlignmentService.computeLocalAlignment(requestData.getInput1(), requestData.getInput2(),
+					scoringScheme, Integer.parseInt(requestData.getGapPenalty()));
+		}
+		return result;
+
 	}
 }
