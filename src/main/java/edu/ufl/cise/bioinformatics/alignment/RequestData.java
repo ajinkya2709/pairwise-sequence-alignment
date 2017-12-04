@@ -11,6 +11,7 @@ public class RequestData {
 	private Boolean useAffineGapPenalty;
 	private String gapStartPenalty;
 	private String gapExtendPenalty;
+	private Boolean forProteins;
 
 	public String getInput1() {
 		return input1;
@@ -82,6 +83,14 @@ public class RequestData {
 
 	public void setGapExtendPenalty(String gapExtendPenalty) {
 		this.gapExtendPenalty = gapExtendPenalty;
+	}
+
+	public Boolean getForProteins() {
+		return forProteins;
+	}
+
+	public void setForProteins(Boolean forProteins) {
+		this.forProteins = forProteins;
 	}
 
 	@Override
