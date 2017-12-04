@@ -101,7 +101,9 @@ class AlignmentInputMenu extends Component {
               }}
             >
               <option value="simple">Text Input</option>
-              <option value="blosum">Blosum 62</option>
+              <option value="blosum" disabled={this.props.disableBlosum}>
+                Blosum 62
+              </option>
             </select>
           </div>
           <Collapse in={!this.state.useBlosumMatrix}>
