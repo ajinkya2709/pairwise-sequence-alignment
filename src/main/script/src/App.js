@@ -4,6 +4,7 @@ import "./App.css";
 import AlignmentInputMenu from "./components/AlignmentInputMenu";
 import ScoreMatrix from "./components/ScoreMatrix";
 import AffineGapScoreMatrices from "./components/AffineGapScoreMatrices";
+import { Tabs, Tab } from "react-bootstrap";
 
 class App extends Component {
   constructor(props) {
@@ -14,11 +15,19 @@ class App extends Component {
       scoreMatrix: [],
       scoreMatrixM: [],
       scoreMatrixX: [],
-      scoreMatrixY: []
+      scoreMatrixY: [],
+      activeTab: 1
     };
   }
 
   computeAlignment(data) {
+    // Updating flag for protein/dna to be sent to backend
+    if (this.state.activeTab === 1) {
+      data.forProteins = false;
+    } else {
+      data.forProteins = true;
+    }
+    console.log("data", data);
     // State change is asynchronous
     this.setState({
       sequence1: data.input1.split(""),
@@ -68,8 +77,25 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Pairwise Sequence Alignment</h1>
         </header>
-        <div>
-          <AlignmentInputMenu onSubmit={this.computeAlignment.bind(this)} />
+        <div className="App-input-menu">
+          <Tabs
+            activeKey={this.state.activeTab}
+            onSelect={key => this.setState({ activeTab: key })}
+            id="controlled-tab-example"
+          >
+            <Tab eventKey={1} title="Nucleotides">
+              <AlignmentInputMenu
+                onSubmit={this.computeAlignment.bind(this)}
+                disableBlosum={false}
+              />
+            </Tab>
+            <Tab eventKey={2} title="Proteins">
+              <AlignmentInputMenu
+                onSubmit={this.computeAlignment.bind(this)}
+                disableBlosum={true}
+              />
+            </Tab>
+          </Tabs>
         </div>
         <div>
           <ScoreMatrix

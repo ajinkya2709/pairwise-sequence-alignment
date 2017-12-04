@@ -18,6 +18,10 @@
   font-size: 1.5em;
 }
 
+.App-input-menu {
+  background-color: #222;
+}
+
 .App-intro {
   font-size: large;
 }
