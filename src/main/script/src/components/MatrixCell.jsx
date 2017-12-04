@@ -4,21 +4,31 @@ class MatrixCell extends Component {
   constructor(props) {
     super(props);
     let bgcolor = "#FFF";
+    let fontWeight = "normal";
     if (this.props.highlight) {
       bgcolor = "#ADFF2F";
     }
+    if (this.props.bold) {
+      fontWeight = "bold";
+    }
     this.state = {
-      backgroundColor: bgcolor
+      backgroundColor: bgcolor,
+      fontWeight: fontWeight
     };
   }
 
   componentWillReceiveProps(nextProps) {
     let bgcolor = "#FFF";
+    let fontWeight = "normal";
     if (nextProps.highlight) {
       bgcolor = "#ADFF2F";
     }
+    if (nextProps.bold) {
+      fontWeight = "bold";
+    }
     this.setState({
-      backgroundColor: bgcolor
+      backgroundColor: bgcolor,
+      fontWeight: fontWeight
     });
   }
 

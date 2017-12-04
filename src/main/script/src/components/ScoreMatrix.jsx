@@ -11,24 +11,24 @@ class ScoreMatrix extends Component {
       return <div />;
     }
     return (
-      <div className="Score-matrix-div">
+      <div className="Score-matrix-table-div">
         <table className="Left-table">
           <tbody>
             <tr>
               <td>
-                <MatrixCell highlight={false} value={"*"} />
+                <MatrixCell highlight={false} bold={true} value={"*"} />
               </td>
             </tr>
             <tr>
               <td>
-                <MatrixCell highlight={false} value={"-"} />
+                <MatrixCell highlight={false} bold={true} value={"-"} />
               </td>
             </tr>
             {this.props.sequence1.map(function(char, index) {
               return (
                 <tr key={index}>
                   <td>
-                    <MatrixCell highlight={false} value={char} />
+                    <MatrixCell highlight={false} bold={true} value={char} />
                   </td>
                 </tr>
               );
@@ -39,12 +39,12 @@ class ScoreMatrix extends Component {
           <tbody>
             <tr>
               <td>
-                <MatrixCell highlight={false} value={"-"} />
+                <MatrixCell highlight={false} bold={true} value={"-"} />
               </td>
               {this.props.sequence2.map(function(char, index) {
                 return (
                   <td>
-                    <MatrixCell highlight={false} value={char} />
+                    <MatrixCell highlight={false} bold={true} value={char} />
                   </td>
                 );
               })}

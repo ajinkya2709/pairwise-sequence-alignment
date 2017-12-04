@@ -135,9 +135,34 @@ td {
   float: left;
 }
 
-.Affine-gap-score-matrices-div,
+.Score-matrix-table-div {
+  padding: 35px;
+}
+
 .Score-matrixM-div,
 .Score-matrixX-div,
 .Score-matrixY-div {
   float: left;
+}
+
+.Score-matrices-div {
+  margin-top: 55px;
+  padding-left: 15px;
+  width: 100%;
+}
+
+.Aligned-sequences-div {
+  margin: 20px 0px 10px 20px;
+  width: 100%;
+  clear: both;
+}
+
+.Result-section-header {
+  font-size: 1.5em;
+  font-weight: bold;
+  padding: 50px 0px 10px 20px;
+}
+
+.Aligned-sequences-table-div {
+  padding: 35px;
 }

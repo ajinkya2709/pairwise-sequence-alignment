@@ -4,6 +4,7 @@ import "./App.css";
 import AlignmentInputMenu from "./components/AlignmentInputMenu";
 import ScoreMatrix from "./components/ScoreMatrix";
 import AffineGapScoreMatrices from "./components/AffineGapScoreMatrices";
+import AlignedSequences from "./components/AlignedSequences";
 import { Tabs, Tab } from "react-bootstrap";
 
 class App extends Component {
@@ -16,7 +17,9 @@ class App extends Component {
       scoreMatrixM: [],
       scoreMatrixX: [],
       scoreMatrixY: [],
-      activeTab: 1
+      activeTab: 1,
+      alignedSequence1: [],
+      alignedSequence2: []
     };
   }
 
@@ -55,7 +58,9 @@ class App extends Component {
               scoreMatrixX: [],
               scoreMatrixY: [],
               sequence1: String(json.input1).split(""),
-              sequence2: String(json.input2).split("")
+              sequence2: String(json.input2).split(""),
+              alignedSequence1: String(json.sequence1).split(""),
+              alignedSequence2: String(json.sequence2).split("")
             });
           } else {
             this.setState({
@@ -64,7 +69,9 @@ class App extends Component {
               scoreMatrixY: json.scoreMatrixY,
               scoreMatrix: [],
               sequence1: String(json.input1).split(""),
-              sequence2: String(json.input2).split("")
+              sequence2: String(json.input2).split(""),
+              alignedSequence1: String(json.sequence1).split(""),
+              alignedSequence2: String(json.sequence2).split("")
             });
           }
         }
@@ -116,14 +123,18 @@ class App extends Component {
             scoreMatrix: json.scoreMatrix,
             scoreMatrixM: [],
             scoreMatrixX: [],
-            scoreMatrixY: []
+            scoreMatrixY: [],
+            alignedSequence1: String(json.sequence1).split(""),
+            alignedSequence2: String(json.sequence2).split("")
           });
         } else {
           this.setState({
             scoreMatrixM: json.scoreMatrixM,
             scoreMatrixX: json.scoreMatrixX,
             scoreMatrixY: json.scoreMatrixY,
-            scoreMatrix: []
+            scoreMatrix: [],
+            alignedSequence1: String(json.sequence1).split(""),
+            alignedSequence2: String(json.sequence2).split("")
           });
         }
       })
@@ -159,7 +170,7 @@ class App extends Component {
             </Tab>
           </Tabs>
         </div>
-        <div>
+        <div className="Score-matrices-div">
           <ScoreMatrix
             matrix={this.state.scoreMatrix}
             sequence1={this.state.sequence1}
@@ -171,6 +182,12 @@ class App extends Component {
             matrixY={this.state.scoreMatrixY}
             sequence1={this.state.sequence1}
             sequence2={this.state.sequence2}
+          />
+        </div>
+        <div className="Aligned-sequences-div">
+          <AlignedSequences
+            alignedSequence1={this.state.alignedSequence1}
+            alignedSequence2={this.state.alignedSequence2}
           />
         </div>
       </div>

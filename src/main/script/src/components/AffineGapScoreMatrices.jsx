@@ -12,7 +12,7 @@ class AffineGapScoreMatrices extends Component {
       return <div />;
     }
     return (
-      <div className="Affine-gap-score-matrices-div">
+      <div>
         <div className="Score-matrixM-div">
           <ScoreMatrix
             matrix={this.props.matrixM}
