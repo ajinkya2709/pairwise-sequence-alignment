@@ -17,6 +17,8 @@ class AlignmentInputMenu extends Component {
       // This boolean should control the request url specific to files
       useFileInput: false,
       inputType: "text",
+      file1: null,
+      file2: null,
       // Control the Scoring Section
       useBlosumMatrix: false,
       scoringType: "simple",
@@ -71,9 +73,27 @@ class AlignmentInputMenu extends Component {
             <div className="Alignment-file-input-div">
               <div className="File-input-text">File for Sequence 1 :</div>
               <div className="File-input-text">File for Sequence 2 :</div>
-              <form encType="multipart/form-data" action="">
-                <input type="file" name="fileName1" className="File-input" />
-                <input type="file" name="fileName1" className="File-input" />
+              <form
+                name="formWithFiles"
+                encType="multipart/form-data"
+                action=""
+              >
+                <input
+                  type="file"
+                  id="file1"
+                  className="File-input"
+                  onChange={event =>
+                    this.setState({ file1: event.target.files[0] })
+                  }
+                />
+                <input
+                  type="file"
+                  id="file2"
+                  className="File-input"
+                  onChange={event =>
+                    this.setState({ file2: event.target.files[0] })
+                  }
+                />
               </form>
             </div>
           </Collapse>
