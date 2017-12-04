@@ -3,7 +3,11 @@ import MatrixCell from "./MatrixCell";
 
 class ScoreMatrix extends Component {
   render() {
-    if (this.props.matrix === "undefined" || this.props.matrix.length === 0) {
+    if (
+      this.props.matrix === "undefined" ||
+      this.props.matrix === null ||
+      this.props.matrix.length === 0
+    ) {
       return <div />;
     }
     return (
