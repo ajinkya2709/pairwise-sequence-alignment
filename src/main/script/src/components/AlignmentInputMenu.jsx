@@ -68,14 +68,12 @@ class AlignmentInputMenu extends Component {
             </div>
           </Collapse>
           <Collapse in={this.state.useFileInput}>
-            <div className="Alignment-file-input">
+            <div className="Alignment-file-input-div">
+              <div className="File-input-text">File for Sequence 1 :</div>
+              <div className="File-input-text">File for Sequence 2 :</div>
               <form encType="multipart/form-data" action="">
-                <input
-                  className="File-input"
-                  type="file"
-                  name="fileName"
-                  defaultValue="fileName"
-                />
+                <input type="file" name="fileName1" className="File-input" />
+                <input type="file" name="fileName1" className="File-input" />
               </form>
             </div>
           </Collapse>
