@@ -52,6 +52,8 @@ public class GlobalAlignmentService {
 		AlignmentResult s = backtrackTable(dp, dpDir, A, B, dp[A.length][B.length].getValue());
 		s.setScore(dp[A.length][B.length].getValue());
 		s.setScoreMatrix(dp);
+		s.setInput1(s1);
+		s.setInput2(s2);
 		return s;
 	}
 
@@ -167,6 +169,8 @@ public class GlobalAlignmentService {
 		result.setScoreMatrixM(M);
 		result.setScoreMatrixX(X);
 		result.setScoreMatrixY(Y);
+		result.setInput1(s1);
+		result.setInput2(s2);
 		return result;
 
 	}

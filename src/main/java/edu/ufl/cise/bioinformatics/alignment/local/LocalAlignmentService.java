@@ -62,6 +62,8 @@ public class LocalAlignmentService {
 
 		AlignmentResult s = localBacktrackTable(dpDir, A, B, max, dp, maxI, maxJ);
 		s.setScoreMatrix(dp);
+		s.setInput1(s1);
+		s.setInput2(s2);
 		return s;
 	}
 
@@ -201,6 +203,8 @@ public class LocalAlignmentService {
 		result.setScoreMatrixM(M);
 		result.setScoreMatrixX(X);
 		result.setScoreMatrixY(Y);
+		result.setInput1(s1);
+		result.setInput2(s2);
 		return result;
 
 	}
