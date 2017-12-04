@@ -13,6 +13,12 @@ public class AlignmentResult {
 	private MatrixCell[][] scoreMatrixM;
 	private MatrixCell[][] scoreMatrixX;
 	private MatrixCell[][] scoreMatrixY;
+	// For File Validations
+	private boolean isFileInvalid;
+	private String errorMessage;
+	// For Parsed File Input
+	private String input1;
+	private String input2;
 
 	public char[] getSequence1() {
 		return sequence1;
@@ -92,6 +98,38 @@ public class AlignmentResult {
 
 	public void setScoreMatrixY(MatrixCell[][] scoreMatrixY) {
 		this.scoreMatrixY = scoreMatrixY;
+	}
+
+	public boolean isFileInvalid() {
+		return isFileInvalid;
+	}
+
+	public void setFileInvalid(boolean isFileInvalid) {
+		this.isFileInvalid = isFileInvalid;
+	}
+
+	public String getErrorMessage() {
+		return errorMessage;
+	}
+
+	public void setErrorMessage(String errorMessage) {
+		this.errorMessage = errorMessage;
+	}
+
+	public String getInput1() {
+		return input1;
+	}
+
+	public void setInput1(String input1) {
+		this.input1 = input1;
+	}
+
+	public String getInput2() {
+		return input2;
+	}
+
+	public void setInput2(String input2) {
+		this.input2 = input2;
 	}
 
 	@Override
