@@ -20,8 +20,62 @@ class App extends Component {
     };
   }
 
+  sendRequestForFileInput(data) {
+    const file1 = data.file1;
+    const file2 = data.file2;
+    let formData = new FormData();
+    formData.append("file1", file1);
+    formData.append("file2", file2);
+    formData.append(
+      "requestData",
+      new Blob([JSON.stringify(data)], {
+        type: "application/json"
+      })
+    );
+    fetch("/" + data.alignmentType + "WithFile", {
+      method: "POST",
+      body: formData
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+        return response.json();
+      })
+      .then(json => {
+        console.log("json", json);
+        if (json.fileInvalid) {
+          console.log("File Invalid");
+          alert(json.errorMessage);
+        } else {
+          if (!json.affineModelUsed) {
+            this.setState({
+              scoreMatrix: json.scoreMatrix,
+              scoreMatrixM: [],
+              scoreMatrixX: [],
+              scoreMatrixY: [],
+              sequence1: String(json.input1).split(""),
+              sequence2: String(json.input2).split("")
+            });
+          } else {
+            this.setState({
+              scoreMatrixM: json.scoreMatrixM,
+              scoreMatrixX: json.scoreMatrixX,
+              scoreMatrixY: json.scoreMatrixY,
+              scoreMatrix: [],
+              sequence1: String(json.input1).split(""),
+              sequence2: String(json.input2).split("")
+            });
+          }
+        }
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  }
+
   computeAlignment(data) {
-    // Updating flag for protein/dna to be sent to backend
+    // Updating flag to identify protein vs dna
     if (this.state.activeTab === 1) {
       data.forProteins = false;
     } else {
@@ -33,6 +87,14 @@ class App extends Component {
       sequence1: data.input1.split(""),
       sequence2: data.input2.split("")
     });
+
+    // Redirecting request if file was uploaded
+    if (data.useFileInput) {
+      this.sendRequestForFileInput(data);
+      return;
+    }
+
+    // For normal cases
     fetch("/" + data.alignmentType, {
       method: "POST",
       headers: {
