@@ -5,6 +5,7 @@ import AlignmentInputMenu from "./components/AlignmentInputMenu";
 import ScoreMatrix from "./components/ScoreMatrix";
 import AffineGapScoreMatrices from "./components/AffineGapScoreMatrices";
 import AlignedSequences from "./components/AlignedSequences";
+import AlgoInfo from "./components/AlgoInfo";
 import { Tabs, Tab } from "react-bootstrap";
 
 class App extends Component {
@@ -19,7 +20,9 @@ class App extends Component {
       scoreMatrixY: [],
       activeTab: 1,
       alignedSequence1: [],
-      alignedSequence2: []
+      alignedSequence2: [],
+      showLocalAlignmentInfo: false,
+      showGlobalAlignmentInfo: false
     };
   }
 
@@ -60,7 +63,9 @@ class App extends Component {
               sequence1: String(json.input1).split(""),
               sequence2: String(json.input2).split(""),
               alignedSequence1: String(json.sequence1).split(""),
-              alignedSequence2: String(json.sequence2).split("")
+              alignedSequence2: String(json.sequence2).split(""),
+              showLocalAlignmentInfo: !json.global,
+              showGlobalAlignmentInfo: json.global
             });
           } else {
             this.setState({
@@ -71,7 +76,9 @@ class App extends Component {
               sequence1: String(json.input1).split(""),
               sequence2: String(json.input2).split(""),
               alignedSequence1: String(json.sequence1).split(""),
-              alignedSequence2: String(json.sequence2).split("")
+              alignedSequence2: String(json.sequence2).split(""),
+              showLocalAlignmentInfo: !json.global,
+              showGlobalAlignmentInfo: json.global
             });
           }
         }
@@ -125,7 +132,9 @@ class App extends Component {
             scoreMatrixX: [],
             scoreMatrixY: [],
             alignedSequence1: String(json.sequence1).split(""),
-            alignedSequence2: String(json.sequence2).split("")
+            alignedSequence2: String(json.sequence2).split(""),
+            showLocalAlignmentInfo: !json.global,
+            showGlobalAlignmentInfo: json.global
           });
         } else {
           this.setState({
@@ -134,7 +143,9 @@ class App extends Component {
             scoreMatrixY: json.scoreMatrixY,
             scoreMatrix: [],
             alignedSequence1: String(json.sequence1).split(""),
-            alignedSequence2: String(json.sequence2).split("")
+            alignedSequence2: String(json.sequence2).split(""),
+            showLocalAlignmentInfo: !json.global,
+            showGlobalAlignmentInfo: json.global
           });
         }
       })
@@ -188,6 +199,12 @@ class App extends Component {
           <AlignedSequences
             alignedSequence1={this.state.alignedSequence1}
             alignedSequence2={this.state.alignedSequence2}
+          />
+        </div>
+        <div>
+          <AlgoInfo
+            showLocalAlignmentInfo={this.state.showLocalAlignmentInfo}
+            showGlobalAlignmentInfo={this.state.showGlobalAlignmentInfo}
           />
         </div>
       </div>

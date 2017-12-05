@@ -155,9 +155,15 @@ td {
 }
 
 .Aligned-sequences-div {
+  clear: both;
+  padding-top: 30px;
+}
+
+.Algo-info-div {
   margin: 20px 0px 10px 20px;
   width: 100%;
   clear: both;
+  background-color: #e0ffff;
 }
 
 .Result-section-header {

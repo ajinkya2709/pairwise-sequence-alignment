@@ -19,6 +19,8 @@ public class AlignmentResult {
 	// For Parsed File Input
 	private String input1;
 	private String input2;
+	// For identifying alignment type
+	private boolean isGlobal;
 
 	public char[] getSequence1() {
 		return sequence1;
@@ -130,6 +132,14 @@ public class AlignmentResult {
 
 	public void setInput2(String input2) {
 		this.input2 = input2;
+	}
+
+	public boolean isGlobal() {
+		return isGlobal;
+	}
+
+	public void setGlobal(boolean isGlobal) {
+		this.isGlobal = isGlobal;
 	}
 
 	@Override

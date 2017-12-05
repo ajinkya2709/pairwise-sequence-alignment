@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import MatrixCell from "./MatrixCell";
+import { Jumbotron } from "react-bootstrap";
 
 class AlignedSequences extends Component {
   render() {
@@ -15,31 +16,33 @@ class AlignedSequences extends Component {
     }
     return (
       <div>
-        <div className="Result-section-header">Optimal Alignment</div>
-        <div className="Aligned-sequences-table-div">
-          <table>
-            <tbody>
-              <tr>
-                {this.props.alignedSequence1.map(function(char, index) {
-                  return (
-                    <td>
-                      <MatrixCell highlight={false} value={char} />
-                    </td>
-                  );
-                })}
-              </tr>
-              <tr>
-                {this.props.alignedSequence2.map(function(char, index) {
-                  return (
-                    <td>
-                      <MatrixCell highlight={false} value={char} />
-                    </td>
-                  );
-                })}
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <Jumbotron>
+          <h3>Optimal Alignment</h3>
+          <div className="Aligned-sequences-table-div">
+            <table>
+              <tbody>
+                <tr>
+                  {this.props.alignedSequence1.map(function(char, index) {
+                    return (
+                      <td>
+                        <MatrixCell highlight={false} value={char} />
+                      </td>
+                    );
+                  })}
+                </tr>
+                <tr>
+                  {this.props.alignedSequence2.map(function(char, index) {
+                    return (
+                      <td>
+                        <MatrixCell highlight={false} value={char} />
+                      </td>
+                    );
+                  })}
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </Jumbotron>
       </div>
     );
   }

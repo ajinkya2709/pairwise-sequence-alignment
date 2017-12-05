@@ -44,6 +44,7 @@ public class GlobalAlignmentController {
 			result = globalAlignmentService.computeGlobalAlignment(requestData.getInput1(), requestData.getInput2(),
 					scoringScheme, Integer.parseInt(requestData.getGapPenalty()));
 		}
+		result.setGlobal(true);
 		return result;
 	}
 
@@ -91,6 +92,7 @@ public class GlobalAlignmentController {
 			result = globalAlignmentService.computeGlobalAlignment(fileInfo1.getParsedSequence(),
 					fileInfo2.getParsedSequence(), scoringScheme, Integer.parseInt(requestData.getGapPenalty()));
 		}
+		result.setGlobal(true);
 		return result;
 	}
 
