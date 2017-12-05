@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Collapse } from "react-bootstrap";
+import { Button, Collapse, Modal } from "react-bootstrap";
 
 class AlignmentInputMenu extends Component {
   constructor(props) {
@@ -24,11 +24,81 @@ class AlignmentInputMenu extends Component {
       scoringType: "simple",
       // Control the Gap Penalty Section
       useAffineGapPenalty: false,
-      penaltyType: "simple"
+      penaltyType: "simple",
+      // For Modals
+      showInputModal: false,
+      showScoringModal: false,
+      showPenaltyModal: false
     };
   }
 
   render() {
+    const modalForInput = (
+      <Modal
+        show={this.state.showInputModal}
+        onHide={() => this.setState({ showInputModal: false })}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Valid Inputs</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <h4>Text in a modal</h4>
+          <p>
+            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+          </p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={() => this.setState({ showInputModal: false })}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    );
+
+    const modalForScoring = (
+      <Modal
+        show={this.state.showScoringModal}
+        onHide={() => this.setState({ showScoringModal: false })}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Scoring Schemes</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <h4>Text related to scoring</h4>
+          <p>
+            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+          </p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={() => this.setState({ showScoringModal: false })}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    );
+
+    const modalForPenalty = (
+      <Modal
+        show={this.state.showPenaltyModal}
+        onHide={() => this.setState({ showPenaltyModal: false })}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Gap Penalties</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <h4>Text related to penalties</h4>
+          <p>
+            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+          </p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={() => this.setState({ showPenaltyModal: false })}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    );
+
     return (
       <div className="Alignment-input-menu">
         <div className="Alignment-input-options">
@@ -48,6 +118,12 @@ class AlignmentInputMenu extends Component {
               <option value="text">Text Input</option>
               <option value="file">File Input</option>
             </select>
+            <Button
+              bsStyle="info"
+              onClick={() => this.setState({ showInputModal: true })}
+            >
+              Input Tips
+            </Button>
           </div>
           <Collapse in={!this.state.useFileInput}>
             <div className="Alignment-sequence-input-div">
@@ -123,6 +199,12 @@ class AlignmentInputMenu extends Component {
                 Blosum 62
               </option>
             </select>
+            <Button
+              bsStyle="info"
+              onClick={() => this.setState({ showScoringModal: true })}
+            >
+              Scoring Tips
+            </Button>
           </div>
           <Collapse in={!this.state.useBlosumMatrix}>
             <div className="Alignment-simple-score-input-div">
@@ -153,7 +235,7 @@ class AlignmentInputMenu extends Component {
         <div className="Alignment-penalty-options">
           {" "}
           <div className="Option-header">
-            Penalty Options{" "}
+            Penalty Model{" "}
             <select
               // change class name if needed
               className="Alignment-type-dropdown"
@@ -171,9 +253,15 @@ class AlignmentInputMenu extends Component {
                 }
               }}
             >
-              <option value="simple">Constant Gap Penalty</option>
-              <option value="affine">Affine Gap Model</option>
+              <option value="simple">Constant</option>
+              <option value="affine">Affine</option>
             </select>
+            <Button
+              bsStyle="info"
+              onClick={() => this.setState({ showPenaltyModal: true })}
+            >
+              Penalty Tips
+            </Button>
           </div>
           <Collapse in={!this.state.useAffineGapPenalty}>
             <div className="Alignment-constant-penalty-input-div">
@@ -188,7 +276,7 @@ class AlignmentInputMenu extends Component {
             </div>
           </Collapse>
           <Collapse in={this.state.useAffineGapPenalty}>
-            <div>
+            <div className="Affine-gap-input-div">
               Gap Start Penalty :{" "}
               <input
                 className="Text-input"
@@ -229,6 +317,9 @@ class AlignmentInputMenu extends Component {
             Compute Alignment
           </button>
         </div>
+        {modalForInput}
+        {modalForScoring}
+        {modalForPenalty}
       </div>
     );
   }

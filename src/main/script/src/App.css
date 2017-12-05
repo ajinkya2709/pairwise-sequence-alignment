@@ -61,9 +61,11 @@
 }
 
 .Alignment-sequence-input-div,
-.Alignment-constant-penalty-input-div {
+.Alignment-constant-penalty-input-div,
+.Affine-gap-input-div {
   float: left;
   width: 100%;
+  padding-top: 30px;
 }
 
 .Text-input {
@@ -74,10 +76,11 @@
 .Alignment-simple-score-input-div {
   width: 100%;
   float: left;
+  padding-top: 30px;
 }
 
 .Alignment-blosum-div {
-  padding-top: 30px;
+  padding-top: 55px;
 }
 
 .Submit-button {
@@ -165,4 +168,8 @@ td {
 
 .Aligned-sequences-table-div {
   padding: 35px;
+}
+
+.User-hint {
+  padding-top: 20px;
 }
