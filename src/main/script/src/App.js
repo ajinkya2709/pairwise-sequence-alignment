@@ -175,13 +175,13 @@ class App extends Component {
             <Tab eventKey={1} title="Nucleotides">
               <AlignmentInputMenu
                 onSubmit={this.computeAlignment.bind(this)}
-                disableBlosum={false}
+                disableBlosum={true}
               />
             </Tab>
             <Tab eventKey={2} title="Proteins">
               <AlignmentInputMenu
                 onSubmit={this.computeAlignment.bind(this)}
-                disableBlosum={true}
+                disableBlosum={false}
               />
             </Tab>
           </Tabs>
