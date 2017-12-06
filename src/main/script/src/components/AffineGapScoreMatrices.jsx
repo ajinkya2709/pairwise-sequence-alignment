@@ -15,6 +15,7 @@ class AffineGapScoreMatrices extends Component {
       <div>
         <div className="Score-matrixM-div">
           <ScoreMatrix
+            title={"Score Matrix M"}
             matrix={this.props.matrixM}
             sequence1={this.props.sequence1}
             sequence2={this.props.sequence2}
@@ -23,6 +24,7 @@ class AffineGapScoreMatrices extends Component {
 
         <div className="Score-matrixX-div">
           <ScoreMatrix
+            title={"Score Matrix X"}
             matrix={this.props.matrixX}
             sequence1={this.props.sequence1}
             sequence2={this.props.sequence2}
@@ -31,6 +33,7 @@ class AffineGapScoreMatrices extends Component {
 
         <div className="Score-matrixY-div">
           <ScoreMatrix
+            title={"Score Matrix Y"}
             matrix={this.props.matrixY}
             sequence1={this.props.sequence1}
             sequence2={this.props.sequence2}

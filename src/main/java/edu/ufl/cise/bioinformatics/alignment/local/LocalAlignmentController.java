@@ -37,9 +37,11 @@ public class LocalAlignmentController {
 
 		AlignmentResult result = null;
 		if (requestData.getUseAffineGapPenalty()) {
+			int negInfinity = Math.min(-100, Integer.parseInt(requestData.getGapStartPenalty()))
+					* Math.max(requestData.getInput1().length(), requestData.getInput2().length());
 			result = localAlignmentService.computeLocalAlignmentWithAffineGap(requestData.getInput1(),
 					requestData.getInput2(), scoringScheme, Integer.parseInt(requestData.getGapStartPenalty()),
-					Integer.parseInt(requestData.getGapExtendPenalty()), -100);
+					Integer.parseInt(requestData.getGapExtendPenalty()), negInfinity);
 
 		} else {
 			result = localAlignmentService.computeLocalAlignment(requestData.getInput1(), requestData.getInput2(),
@@ -85,9 +87,11 @@ public class LocalAlignmentController {
 		}
 
 		if (requestData.getUseAffineGapPenalty()) {
+			int negInfinity = Math.min(-100, Integer.parseInt(requestData.getGapStartPenalty()))
+					* Math.max(fileInfo1.getParsedSequence().length(), fileInfo2.getParsedSequence().length());
 			result = localAlignmentService.computeLocalAlignmentWithAffineGap(fileInfo1.getParsedSequence(),
 					fileInfo2.getParsedSequence(), scoringScheme, Integer.parseInt(requestData.getGapStartPenalty()),
-					Integer.parseInt(requestData.getGapExtendPenalty()), -100);
+					Integer.parseInt(requestData.getGapExtendPenalty()), negInfinity);
 
 		} else {
 			result = localAlignmentService.computeLocalAlignment(fileInfo1.getParsedSequence(),

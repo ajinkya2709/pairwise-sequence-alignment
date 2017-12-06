@@ -22,7 +22,8 @@ class App extends Component {
       alignedSequence1: [],
       alignedSequence2: [],
       showLocalAlignmentInfo: false,
-      showGlobalAlignmentInfo: false
+      showGlobalAlignmentInfo: false,
+      affineModelUsed: false
     };
   }
 
@@ -65,7 +66,8 @@ class App extends Component {
               alignedSequence1: String(json.sequence1).split(""),
               alignedSequence2: String(json.sequence2).split(""),
               showLocalAlignmentInfo: !json.global,
-              showGlobalAlignmentInfo: json.global
+              showGlobalAlignmentInfo: json.global,
+              affineModelUsed: false
             });
           } else {
             this.setState({
@@ -78,7 +80,8 @@ class App extends Component {
               alignedSequence1: String(json.sequence1).split(""),
               alignedSequence2: String(json.sequence2).split(""),
               showLocalAlignmentInfo: !json.global,
-              showGlobalAlignmentInfo: json.global
+              showGlobalAlignmentInfo: json.global,
+              affineModelUsed: true
             });
           }
         }
@@ -134,7 +137,8 @@ class App extends Component {
             alignedSequence1: String(json.sequence1).split(""),
             alignedSequence2: String(json.sequence2).split(""),
             showLocalAlignmentInfo: !json.global,
-            showGlobalAlignmentInfo: json.global
+            showGlobalAlignmentInfo: json.global,
+            affineModelUsed: false
           });
         } else {
           this.setState({
@@ -145,7 +149,8 @@ class App extends Component {
             alignedSequence1: String(json.sequence1).split(""),
             alignedSequence2: String(json.sequence2).split(""),
             showLocalAlignmentInfo: !json.global,
-            showGlobalAlignmentInfo: json.global
+            showGlobalAlignmentInfo: json.global,
+            affineModelUsed: true
           });
         }
       })
@@ -183,6 +188,7 @@ class App extends Component {
         </div>
         <div className="Score-matrices-div">
           <ScoreMatrix
+            title={"Score Matrix M"}
             matrix={this.state.scoreMatrix}
             sequence1={this.state.sequence1}
             sequence2={this.state.sequence2}
@@ -205,6 +211,7 @@ class App extends Component {
           <AlgoInfo
             showLocalAlignmentInfo={this.state.showLocalAlignmentInfo}
             showGlobalAlignmentInfo={this.state.showGlobalAlignmentInfo}
+            affineModelUsed={this.state.affineModelUsed}
           />
         </div>
       </div>

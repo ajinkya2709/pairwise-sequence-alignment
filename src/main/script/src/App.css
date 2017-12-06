@@ -91,6 +91,11 @@
   color: #fff;
 }
 
+.Matrix-title {
+  margin-bottom: 10px;
+  font-size: 24px;
+}
+
 .Score-matrix-div {
   margin-top: 55px;
   padding-left: 15px;
@@ -105,6 +110,11 @@ table,
 th,
 td {
   border: 1px solid black;
+}
+
+tfoot tr td {
+  border: none;
+  vertical-align: middle;
 }
 
 .Cell {

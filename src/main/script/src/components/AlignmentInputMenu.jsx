@@ -42,9 +42,19 @@ class AlignmentInputMenu extends Component {
           <Modal.Title>Valid Inputs</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <h4>Text in a modal</h4>
+          <h4>Text Input</h4>
           <p>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+            <b>DNA:</b> Two input sequences with any combination of the
+            following 4 nucleotides: A, C, G, T <b>Protein:</b> Two input
+            sequences with any combination of the following 20 amino acids plus
+            ‘X’ (any amino acid): A, R, N, D, C, Q, E, G, H, I, L, K, M, F, P,
+            S, T, W, Y, V, X
+          </p>
+          <hr />
+          <h4>File Input</h4>
+          <p>
+            Valid DNA and Protein Sequences in a <b>.txt</b> file. New line
+            characters are allowed (for very large inputs)
           </p>
         </Modal.Body>
         <Modal.Footer>
@@ -64,9 +74,45 @@ class AlignmentInputMenu extends Component {
           <Modal.Title>Scoring Schemes</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <h4>Text related to scoring</h4>
+          <h4>Text Input</h4>
           <p>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+            Both, the Match score and the Mismatch score are used in computation
+            of the Score matrix.<br />
+            Match Score is used when the 2 characters being matched are
+            identical.<br />
+            Mismatch Score is used when 2 characters being matched are NOT
+            identical.
+            <br />
+            <br />
+            <h5>Typical Values</h5>
+            <br />
+            <b>Match Score</b> : Usually a positive integer (This will increase
+            the score when characters match. Thus we are trying to favor this
+            alignment)
+            <br />
+            <b>Mismatch Score</b> : An integer smaller than Match Score (We want
+            to avoid mismatches in the final alignment)
+          </p>
+          <hr />
+          <h4>Blosum 62 (**only for Protein Sequences)</h4>
+          <p>
+            Instead of manually providing a Match and a Mismatch Score, this
+            setting allows you to use match/mismatch scores from the Blosum 62
+            matrix.
+            <br />
+            <br />
+            A BLOSUM matrix tells us the likelihood of occurrence of each
+            pairwise substitution, and we can use these values to score a
+            pairwise comparison. Each scoring matrix is constructed based on how
+            identical the ungapped multiple sequence alignments are. BLOSUM62 is
+            derived from blocks containing at most 62% identity in the ungapped
+            sequence aligments.
+            <br />
+            <br />
+            Read more about Blosum Matrices{" "}
+            <a href="https://en.wikipedia.org/wiki/BLOSUM" target="_blank">
+              here
+            </a>
           </p>
         </Modal.Body>
         <Modal.Footer>
@@ -86,9 +132,37 @@ class AlignmentInputMenu extends Component {
           <Modal.Title>Gap Penalties</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <h4>Text related to penalties</h4>
           <p>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+            Gap penalty is a scoring scheme used to align small genetic
+            sequences or reads against a reference genetic sequence.
+            Transcription and DNA replication can result in mutations in the
+            genetic sequence leading to mismatches. Therefore, to accurately
+            align sequences, these mutations are considered as gaps.
+          </p>
+          <hr />
+          <h4>Constant Gap Penalty Model</h4>
+          <p>
+            A constant penalty is assigned to all gaps regardless of the gap
+            length. Typical value is a negative integer which is less than Match
+            Score (because we want to avoid gaps)
+          </p>
+          <hr />
+          <h4>Affine Gap Penalty</h4>
+          <p>
+            Affine gap penalties provide incentive for the alignment algorithm
+            to keep sequences together and have larger single gap than inserting
+            millions of small gaps. Affine gap penalties take the form A+(B*L)
+            where, <br /> A = Gap Opening Penalty<br /> B = Gap extension
+            Penalty<br />
+            L = Gap length
+            <br /> <br />For Affine model to work correctly, we should penalize
+            Gap openings heavily as compared to Gap extensions.
+            <br />
+            <br />
+            Read more about Gap Penalties{" "}
+            <a href="https://en.wikipedia.org/wiki/Gap_penalty" target="_blank">
+              here
+            </a>
           </p>
         </Modal.Body>
         <Modal.Footer>
@@ -155,6 +229,7 @@ class AlignmentInputMenu extends Component {
                 action=""
               >
                 <input
+                  accept=".txt"
                   type="file"
                   id="file1"
                   className="File-input"
@@ -163,6 +238,7 @@ class AlignmentInputMenu extends Component {
                   }
                 />
                 <input
+                  accept=".txt"
                   type="file"
                   id="file2"
                   className="File-input"

@@ -36,9 +36,11 @@ public class GlobalAlignmentController {
 		}
 		AlignmentResult result = null;
 		if (requestData.getUseAffineGapPenalty()) {
+			int negInfinity = Math.min(-100, Integer.parseInt(requestData.getGapStartPenalty()))
+					* Math.max(requestData.getInput1().length(), requestData.getInput2().length());
 			result = globalAlignmentService.computeGlobalAlignmentWithAffineGap(requestData.getInput1(),
 					requestData.getInput2(), scoringScheme, Integer.parseInt(requestData.getGapStartPenalty()),
-					Integer.parseInt(requestData.getGapExtendPenalty()), -100);
+					Integer.parseInt(requestData.getGapExtendPenalty()), negInfinity);
 
 		} else {
 			result = globalAlignmentService.computeGlobalAlignment(requestData.getInput1(), requestData.getInput2(),
@@ -51,7 +53,7 @@ public class GlobalAlignmentController {
 	@RequestMapping(value = "/globalWithFile", method = RequestMethod.POST)
 	public AlignmentResult computeGlobalAlignmentWithFile(@RequestPart("requestData") RequestData requestData,
 			@RequestPart("file1") MultipartFile file1, @RequestPart("file2") MultipartFile file2) {
-		
+
 		FileInfo fileInfo1 = null, fileInfo2 = null;
 		if (requestData.getForProteins()) {
 			fileInfo1 = fileService.validateAndParseFileForProteins(file1);
@@ -74,7 +76,7 @@ public class GlobalAlignmentController {
 			result.setErrorMessage(fileInfo2.getErrorMessage());
 			return result;
 		}
-		
+
 		ScoringScheme scoringScheme = null;
 		if (requestData.getUseBlosumMatrix()) {
 			scoringScheme = new BlosumMatrixScoringScheme();
@@ -84,9 +86,11 @@ public class GlobalAlignmentController {
 		}
 
 		if (requestData.getUseAffineGapPenalty()) {
+			int negInfinity = Math.min(-100, Integer.parseInt(requestData.getGapStartPenalty()))
+					* Math.max(fileInfo1.getParsedSequence().length(), fileInfo2.getParsedSequence().length());
 			result = globalAlignmentService.computeGlobalAlignmentWithAffineGap(fileInfo1.getParsedSequence(),
 					fileInfo2.getParsedSequence(), scoringScheme, Integer.parseInt(requestData.getGapStartPenalty()),
-					Integer.parseInt(requestData.getGapExtendPenalty()), -100);
+					Integer.parseInt(requestData.getGapExtendPenalty()), negInfinity);
 
 		} else {
 			result = globalAlignmentService.computeGlobalAlignment(fileInfo1.getParsedSequence(),

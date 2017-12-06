@@ -66,6 +66,13 @@ class ScoreMatrix extends Component {
               );
             })}
           </tbody>
+          <tfoot>
+            <tr>
+              <td colSpan={this.props.sequence2.length}>
+                <div className="Matrix-title">{this.props.title}</div>
+              </td>
+            </tr>
+          </tfoot>
         </table>
       </div>
     );
